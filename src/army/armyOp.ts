@@ -4,9 +4,9 @@ import { FighterSquadOp } from "./fighterSquadOp";
 import { SubOp } from "metaClass/subOp";
 
 export class ArmyOp extends SubOp {
+  private squads: FighterSquadOp[] = [];
   private resourceOp = new ArmyResourceOp(this, this.gameObjects);
   private command = new ArmyCommandOp(this, this.gameObjects);
-  private squads: FighterSquadOp[] = [];
 
   public getSquads() {
     return [...this.squads];
@@ -17,6 +17,7 @@ export class ArmyOp extends SubOp {
   }
 
   public run() {
+    this.resourceOp.run();
     this.squads.forEach(squad => squad.run());
   }
 }
