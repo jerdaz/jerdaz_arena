@@ -1,5 +1,4 @@
 export class Operation {
-  public run(): void {
-    console.log("Empty Operation");
-  }
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  public run(): void {}
 }
