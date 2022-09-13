@@ -22,5 +22,6 @@ export class RangedFighterCreepOp extends FighterCreepOp {
     } else {
       this.creep.moveTo(this.squad.objective);
     }
+    console.log(this.squad.objective);
   }
 }
