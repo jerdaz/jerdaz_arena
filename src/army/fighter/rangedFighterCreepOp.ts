@@ -1,9 +1,16 @@
-import { constants, prototypes, utils } from "game";
+import { constants, prototypes } from "game";
 import { FighterCreepOp } from "./fighterCreepOp";
-import { Flag } from "arena";
+import { FighterSquadOp } from "army/fighterSquadOp";
+import { GameObjects } from "objects";
 import { OwnedStructure } from "game/prototypes";
 
 export class RangedFighterCreepOp extends FighterCreepOp {
+  protected squad: FighterSquadOp;
+  public constructor(parent: FighterSquadOp, gameObjects: GameObjects, creep: prototypes.Creep) {
+    super(parent, gameObjects, creep);
+    this.squad = parent;
+  }
+
   public run() {
     const enemies = this.gameObjects.enemyCreeps;
     const enemyStructures = this.gameObjects.enemyStructures;
@@ -13,8 +20,7 @@ export class RangedFighterCreepOp extends FighterCreepOp {
     if (enemy) {
       if (this.creep.rangedAttack(enemy) === constants.ERR_NOT_IN_RANGE) this.creep.moveTo(enemy);
     } else {
-      const flags = utils.getObjectsByPrototype(Flag);
-      this.creep.moveTo(flags.filter(flag => !flag.my)[0]);
+      this.creep.moveTo(this.squad.objective);
     }
   }
 }

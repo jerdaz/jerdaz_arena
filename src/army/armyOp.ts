@@ -2,6 +2,7 @@ import { ArmyCommandOp } from "./armyCommandOp";
 import { ArmyResourceOp } from "./armyResourceOp";
 import { FighterSquadOp } from "./fighterSquadOp";
 import { SubOp } from "metaClass/subOp";
+import { prototypes } from "game";
 
 export class ArmyOp extends SubOp {
   private squads: FighterSquadOp[] = [];
@@ -12,8 +13,8 @@ export class ArmyOp extends SubOp {
     return [...this.squads];
   }
 
-  public newSquad() {
-    this.squads.push(new FighterSquadOp());
+  public newSquad(objective: prototypes.GameObject) {
+    this.squads.push(new FighterSquadOp(objective));
   }
 
   public run() {
