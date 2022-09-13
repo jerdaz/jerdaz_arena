@@ -19,9 +19,8 @@ export class RangedFighterCreepOp extends FighterCreepOp {
     if (!enemy) enemy = this.creep.findClosestByPath(enemyStructures);
     if (enemy) {
       if (this.creep.rangedAttack(enemy) === constants.ERR_NOT_IN_RANGE) this.creep.moveTo(enemy);
-    } else {
+    } else if (this.squad.objective) {
       this.creep.moveTo(this.squad.objective);
     }
-    console.log(this.squad.objective);
   }
 }
