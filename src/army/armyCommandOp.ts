@@ -12,6 +12,7 @@ export class ArmyCommandOp extends SubOp {
 
   public run() {
     if (arenaInfo.name === "Capture the Flag") this.runCTF();
+    if (arenaInfo.name === "Spawn and Swamp") this.runSAS();
   }
 
   private runCTF() {
@@ -19,5 +20,10 @@ export class ArmyCommandOp extends SubOp {
     if (enemyFlags.length < 1) throw Error();
     const enemyFlag = enemyFlags[0];
     this.armyOp.getSquads()[0].objective = enemyFlag;
+  }
+
+  private runSAS() {
+    const enemySpawn = this.gameObjects.enemySpawns[0];
+    this.armyOp.getSquads()[0].objective = enemySpawn;
   }
 }
